@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<robot name="dof_fit">
+
+    <material name="grey">
+        <color rgba="0.75 0.75 0.75 1"/>
+    </material>
+    <material name="red">
+        <color rgba="0.8 0 0 1"/>
+    </material>
+    
+    <link name="dummy" />
+    <link name="base_link">
+        
+        <inertial>
+            <origin xyz="-5.0171E-05 0.00010703 0.043587" rpy="0 0 0" />
+            <mass value="25" />
+            <inertia ixx="0.0011281" ixy="-4.5611E-07" ixz="-6.71E-07" iyy="0.0011096" iyz="-2.9908E-07" izz="0.0018749" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/base_link.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.69412 0.098039 0.098039 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/base_link.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <gazebo reference="base_link">
+        <kp>400000.0</kp>
+        <kd>400000.0</kd>
+        <mu1>15.0</mu1>
+        <mu2>15.0</mu2>
+        <material>Gazebo/Red</material>
+        
+    </gazebo>    
+    <joint name="dummy_joint" type="fixed">
+        <parent link="dummy" />
+        <child link="base_link" />
+    </joint>
+    <link name="Link_1">
+        
+        <inertial>
+            <origin xyz="-0.0439423990536337 0.000602856371571715 0.000121144358782827" rpy="0 0 0" />
+            <mass value="1.72546943709083" />
+            <inertia ixx="0.000555908221091426" ixy="-1.46554597692578E-06" ixz="8.46437587472299E-08" iyy="0.000778122191766057" iyz="-5.16254437826682E-06" izz="0.000623023265234466" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Link_1.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.694117647058824 0.0980392156862745 0.0980392156862745 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Link_1.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <gazebo reference="Link_1">
+        <kp>400000.0</kp>
+        <kd>400000.0</kd>
+        <mu1>15.0</mu1>
+        <mu2>15.0</mu2>
+        <material>Gazebo/Grey</material>
+    </gazebo>
+    <joint name="Joint_1" type="revolute">
+        <origin xyz="0 0 0.104" rpy="1.5708 1.5708 0" />
+        <parent link="base_link" />
+        <child link="Link_1" />
+        <axis xyz="-1 0 0" />
+        <limit lower="-1.5707" upper="1.5707" effort="20" velocity="0.08" />
+    </joint>
+    <link name="Link_2">
+        
+        <inertial>
+            <origin xyz="0.0685680762868854 0.000599984307954203 0.0258674459321705" rpy="0 0 0" />
+            <mass value="0.211773012523455" />
+            <inertia ixx="5.08010498198532E-05" ixy="-3.30977561073865E-06" ixz="-6.23987755766645E-06" iyy="0.000226386199188006" iyz="-4.52073993406769E-07" izz="0.000237485881547953" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Link_2.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.694117647058824 0.0980392156862745 0.0980392156862745 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Link_2.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <gazebo reference="Link_2">
+        <kp>400000.0</kp>
+        <kd>400000.0</kd>
+        <mu1>15.0</mu1>
+        <mu2>15.0</mu2>
+        <material>Gazebo/Red</material>
+    </gazebo>
+    <joint name="Joint_2" type="revolute">
+        <origin xyz="-0.046 0.028987 -0.00085654" rpy="-1.5708 0 3.1416" />
+        <parent link="Link_1" />
+        <child link="Link_2" />
+        <axis xyz="0 0 1" />
+        <limit lower="-1.5707" upper="1.5707" effort="20" velocity="0.08" />
+    </joint>
+    <link name="Link_3">
+        
+        <inertial>
+            <origin xyz="-0.0256503139904983 0.0264730871404752 -0.00364498798136229" rpy="0 0 0" />
+            <mass value="1.30147505439002" />
+            <inertia ixx="0.00038258642934127" ixy="-1.42359640823949E-06" ixz="-4.52202117042666E-05" iyy="0.00040436684855594" iyz="6.83475965893099E-07" izz="0.000379491920992587" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Link_3.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.694117647058824 0.0980392156862745 0.0980392156862745 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Link_3.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <gazebo reference="Link_3">
+        <kp>400000.0</kp>
+        <kd>400000.0</kd>
+        <mu1>15.0</mu1>
+        <mu2>15.0</mu2>
+        <material>Gazebo/Grey</material>
+    </gazebo>
+    <joint name="Joint_3" type="revolute">
+        <origin xyz="0.20497 0.0038029 0.0092964" rpy="-1.5917 0.020887 -2.3564" />
+        <parent link="Link_2" />
+        <child link="Link_3" />
+        <axis xyz="0 1 0" />
+        <limit lower="0" upper="1.5" effort="20" velocity="0.08" />
+    </joint>
+    <link name="Link_4">
+        
+        <inertial>
+            <origin xyz="0.000313197531303759 -0.0570886170653447 -0.000296558806608768" rpy="0 0 0" />
+            <mass value="0.129521630593046" />
+            <inertia ixx="4.02638425978193E-05" ixy="6.01302431003278E-08" ixz="1.42139051669161E-06" iyy="2.73932044730563E-05" iyz="-5.98737231599718E-08" izz="4.04501029424382E-05" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Link_4.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.694117647058824 0.0980392156862745 0.0980392156862745 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Link_4.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <gazebo reference="Link_4">
+        <kp>400000.0</kp>
+        <kd>400000.0</kd>
+        <mu1>15.0</mu1>
+        <mu2>15.0</mu2>
+        <material>Gazebo/Red</material>
+    </gazebo>
+    <joint name="Joint_4" type="revolute">
+        <origin xyz="-0.024685 -0.02479 -0.046026" rpy="0.95696 0.5256 2.1896" />
+        <parent link="Link_3" />
+        <child link="Link_4" />
+        <axis xyz="0 1 0" />
+        <limit lower="-1.5707" upper="1.5707" effort="20" velocity="0.08" />
+    </joint>
+    <link name="Link_5">
+        
+        <inertial>
+            <origin xyz="-0.00237077624161524 0.0352772248958467 0.000934761543790939" rpy="0 0 0" />
+            <mass value="0.0631352356217759" />
+            <inertia ixx="1.64938615608914E-05" ixy="6.91909654955854E-08" ixz="3.47216212826657E-10" iyy="1.35821446818582E-05" iyz="-8.02328780877477E-08" izz="1.66352804228886E-05" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Link_5.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.101960784313725 0.101960784313725 0.101960784313725 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Link_5.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <gazebo reference="Link_5">
+        <kp>400000.0</kp>
+        <kd>400000.0</kd>
+        <mu1>15.0</mu1>
+        <mu2>15.0</mu2>
+        <material>Gazebo/Grey</material>
+    </gazebo>
+    <joint name="Joint_5" type="revolute">
+        <origin xyz="0 -0.1385 0" rpy="-0.001344 -0.75239 3.1416" />
+        <parent link="Link_4" />
+        <child link="Link_5" />
+        <axis xyz="-1 0 0" />
+        <limit lower="-1.5707" upper="1.5707" effort="20" velocity="0.08" />
+    </joint>
+    <link name="Link_6">
+        
+        <inertial>
+            <origin xyz="-0.00859625543246861 0.0405127544320565 0.00139619595223389" rpy="0 0 0" />
+            <mass value="0.115625997191069" />
+            <inertia ixx="4.24057109975732E-05" ixy="1.38491765544162E-07" ixz="-7.10598502810795E-09" iyy="3.30267705750942E-05" iyz="-4.96861663871509E-08" izz="2.21813086048847E-05" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Link_6.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.694117647058824 0.0980392156862745 0.0980392156862745 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Link_6.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <gazebo reference="Link_6">
+        <kp>400000.0</kp>
+        <kd>400000.0</kd>
+        <mu1>15.0</mu1>
+        <mu2>15.0</mu2>
+        <material>Gazebo/Red</material>
+    </gazebo>
+    <joint name="Joint_6" type="revolute">
+        <origin xyz="-0.00245 0.0575 7.7278E-05" rpy="0 -0.001344 1.5708" />
+        <parent link="Link_5" />
+        <child link="Link_6" />
+        <axis xyz="0 0 1" />
+        <limit lower="-3.1414" upper="0" effort="10" velocity="0.08" />
+    </joint>
+    <link name="Gripper_Idol_Gear">
+        
+        <inertial>
+            <origin xyz="-0.00645264153794536 1.2888806133482E-09 0.000406652747912711" rpy="0 0 0" />
+            <mass value="0.0106531788318515" />
+            <inertia ixx="4.88532798255261E-07" ixy="8.46082945323822E-14" ixz="-4.16495427516113E-08" iyy="2.46502258006767E-06" iyz="7.20204319128E-14" izz="2.03881076796993E-06" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Gripper_Idol_Gear.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.694117647058824 0.0980392156862745 0.0980392156862745 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Gripper_Idol_Gear.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <gazebo reference="Gripper_Idol_Gear">
+        <kp>400000.0</kp>
+        <kd>400000.0</kd>
+        <mu1>15.0</mu1>
+        <mu2>15.0</mu2>
+        <material>Gazebo/Grey</material>
+    </gazebo>
+    <joint name="Gripper_Idol_Gear_Joint" type="revolute">
+        <origin xyz="0 0.048 0.01645" rpy="1.5708 1.5708 0" />
+        <parent link="Link_6" />
+        <child link="Gripper_Idol_Gear" />
+        <axis xyz="0 1 0" />
+        <limit lower="-1.5707" upper="0" effort="20" velocity="0.08" />
+    </joint>
+    <link name="Tip_Gripper_Idol">
+        
+        <inertial>
+            <origin xyz="0.0283088813853639 0.000252430460343372 0.0070058575409696" rpy="0 0 0" />
+            <mass value="0.0223383129432979" />
+            <inertia ixx="1.20060918495953E-06" ixy="9.40667187925121E-10" ixz="-1.3074260850099E-06" iyy="8.52850293234169E-06" iyz="2.04974269309147E-10" izz="8.68035962011853E-06" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Tip_Gripper_Idol.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.694117647058824 0.0980392156862745 0.0980392156862745 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Tip_Gripper_Idol.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <gazebo reference="Tip_Gripper_Idol">
+        <kp>400000.0</kp>
+        <kd>400000.0</kd>
+        <mu1>15.0</mu1>
+        <mu2>15.0</mu2>
+        <material>Gazebo/Red</material>
+    </gazebo>
+    <joint name="Tip_Gripper_Idol_Joint" type="revolute">
+        <origin xyz="-0.04 0 0" rpy="0 1.5708 0" />
+        <parent link="Gripper_Idol_Gear" />
+        <child link="Tip_Gripper_Idol" />
+        <axis xyz="0 1 0" />
+        <limit lower="-1.5" upper="0" effort="20" velocity="0.08" />
+        <mimic joint="Gripper_Idol_Gear_Joint" multiplier="-1" offset="0" />
+    </joint>
+    <link name="Gripper_Servo_Gear">
+        
+        <inertial>
+            <origin xyz="-0.00659446521753219 5.68561578928595E-08 -0.000395277758091589" rpy="0 0 0" />
+            <mass value="0.0103877852418143" />
+            <inertia ixx="4.85661536277939E-07" ixy="-5.6178873772505E-12" ixz="3.58267516543681E-08" iyy="2.44996035793358E-06" iyz="-4.05817638743612E-12" izz="2.02505835231068E-06" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Gripper_Servo_Gear.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.694117647058824 0.0980392156862745 0.0980392156862745 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Gripper_Servo_Gear.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <gazebo reference="Gripper_Servo_Gear">
+        <kp>400000.0</kp>
+        <kd>400000.0</kd>
+        <mu1>15.0</mu1>
+        <mu2>15.0</mu2>
+        <material>Gazebo/Grey</material>
+    </gazebo>
+    <joint name="Gripper_Servo_Gear_Joint" type="revolute">
+        <origin xyz="0 0.048 -0.01155" rpy="0 -1.5654 -1.5708" />
+        <parent link="Link_6" />
+        <child link="Gripper_Servo_Gear" />
+        <axis xyz="0 1 0" />
+        <limit lower="0" upper="1.5707" effort="20" velocity="0.08" />
+    </joint>
+    <link name="Tip_Gripper_Servo">
+        
+        <inertial>
+            <origin xyz="0.0283088936740149 -0.000252391223208054 0.00700586590604133" rpy="0 0 0" />
+            <mass value="0.0223382858569993" />
+            <inertia ixx="1.20060685488941E-06" ixy="-9.22618006784907E-10" ixz="-1.30742386656302E-06" iyy="8.52849811219307E-06" iyz="-1.62594005761941E-10" izz="8.68035533802863E-06" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Tip_Gripper_Servo.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.694117647058824 0.0980392156862745 0.0980392156862745 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Tip_Gripper_Servo.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <gazebo reference="Tip_Gripper_Servo">
+        <kp>400000.0</kp>
+        <kd>400000.0</kd>
+        <mu1>15.0</mu1>
+        <mu2>15.0</mu2>
+        <material>Gazebo/Red</material>
+        
+    </gazebo>
+    <joint name="Tip_Gripper_Servo_Joint" type="revolute">
+        <origin xyz="-0.04 0 0" rpy="0 -1.5654 -3.1416" />
+        <parent link="Gripper_Servo_Gear" />
+        <child link="Tip_Gripper_Servo" />
+        <axis xyz="0 -1 0" />
+        <limit lower="0" upper="1.3" effort="20" velocity="0.08" />
+        <mimic joint="Gripper_Servo_Gear_Joint" multiplier="-1" offset="0" />
+    </joint>
+    <link name="Pivot_Arm_gripper_Servo">
+        
+        <inertial>
+            <origin xyz="-0.0199999999999479 -1.02834407655905E-13 -1.21208598713451E-13" rpy="0 0 0" />
+            <mass value="0.00355645530062258" />
+            <inertia ixx="2.23718203237377E-08" ixy="1.6939537525642E-21" ixz="-1.60524737623572E-23" iyy="6.61682654190112E-07" iyz="6.26141959371149E-22" izz="6.59724388878559E-07" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Pivot_Arm_gripper_Servo.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.694117647058824 0.0980392156862745 0.0980392156862745 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Pivot_Arm_gripper_Servo.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <gazebo reference="Pivot_Arm_gripper_Servo">
+        <kp>400000.0</kp>
+        <kd>400000.0</kd>
+        <mu1>15.0</mu1>
+        <mu2>15.0</mu2>
+        <material>Gazebo/Grey</material>
+    </gazebo>
+    <joint name="Pivot_Arm_Gripper_Servo_Joint" type="revolute">
+        <origin xyz="0 0.068 -0.00455" rpy="3.1416 -1.5654 -1.5708" />
+        <parent link="Link_6" />
+        <child link="Pivot_Arm_gripper_Servo" />
+        <axis xyz="-1 0 0" />
+        <limit lower="-1.5707" upper="1.5707" effort="20" velocity="0.08" />
+        <mimic joint="Gripper_Servo_Gear_Joint" multiplier="1" offset="0" />
+    </joint>
+    <link name="Pivot_Arm_Gripper_Idol">
+        
+        <inertial>
+            <origin xyz="0.0240001434028309 2.66453525910038E-15 -5.35540477596824E-05" rpy="0 0 0" />
+            <mass value="0.00355645530062257" />
+            <inertia ixx="2.23718203237376E-08" ixy="3.74867317472531E-24" ixz="8.16759648830381E-24" iyy="6.61682654190112E-07" iyz="5.50445026314332E-23" izz="6.59724388878558E-07" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Pivot_Arm_Gripper_Idol.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.694117647058824 0.0980392156862745 0.0980392156862745 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Pivot_Arm_Gripper_Idol.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <gazebo reference="Pivot_Arm_Gripper_Idol">
+        <kp>400000.0</kp>
+        <kd>400000.0</kd>
+        <mu1>15.0</mu1>
+        <mu2>15.0</mu2>
+        <material>Gazebo/Red</material>
+    </gazebo>
+    <joint name="Pivot_Arm_Gripper_Idol_Joint" type="revolute">
+        <origin xyz="0 0.067946 0.0054499" rpy="1.5708 -1.5708 0" />
+        <parent link="Link_6" />
+        <child link="Pivot_Arm_Gripper_Idol" />
+        <axis xyz="0 -1 0" />
+        <limit lower="0" upper="1.5707" effort="20" velocity="0.08" />
+        <mimic joint="Gripper_Idol_Gear_Joint" multiplier="1" offset="0" />
+    </joint>
+    
+    <transmission name="trans_Joint_1">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="Joint_1">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            
+        </joint>
+        <actuator name="Joint_1_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_Joint_2">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="Joint_2">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            
+        </joint>
+        <actuator name="Joint_2_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_Joint_3">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="Joint_3">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            
+        </joint>
+        <actuator name="Joint_3_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_Joint_4">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="Joint_4">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            
+        </joint>
+        <actuator name="Joint_4_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_Joint_5">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="Joint_5">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            
+        </joint>
+        <actuator name="Joint_5_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_Joint_6">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="Joint_6">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            
+        </joint>
+        <actuator name="Joint_6_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_Gripper_Idol_Gear_Joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="Gripper_Idol_Gear_Joint">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            
+        </joint>
+        <actuator name="Gripper_Idol_Gear_Joint_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_Tip_Gripper_Idol_Joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="Tip_Gripper_Idol_Joint">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            
+        </joint>
+        <actuator name="Tip_Gripper_Idol_Joint_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_Gripper_Servo_Gear_Joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="Gripper_Servo_Gear_Joint">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            
+        </joint>
+        <actuator name="Gripper_Servo_Gear_Joint_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_Tip_Gripper_Servo_Joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="Tip_Gripper_Servo_Joint">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            
+        </joint>
+        <actuator name="Tip_Gripper_Servo_Joint_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_Pivot_Arm_Gripper_Servo_Joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="Pivot_Arm_Gripper_Servo_Joint">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            
+        </joint>
+        <actuator name="Pivot_Arm_Gripper_Servo_Joint_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_Pivot_Arm_Gripper_Idol_Joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="Pivot_Arm_Gripper_Idol_Joint">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            
+        </joint>
+        <actuator name="Pivot_Arm_Gripper_Idol_Joint_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/dof_fit</robotNamespace>
+            <controlPeriod>0.001</controlPeriod>
+            <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+        </plugin>
+    </gazebo>
+</robot>

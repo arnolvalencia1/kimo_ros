@@ -1,0 +1,643 @@
+<?xml version="1.0"?>
+<!-- Revolute-Revolute Manipulator -->
+<robot name="dof_fit" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+      <!-- Constants for robot dimensions -->
+    <xacro:property name="PI" value="3.1415926535897931"/>
+    <xacro:property name="mass0" value="25" /> <!-- value mass in link Base Link -->
+    <xacro:property name="mass1" value="1.72546943709083" /> <!-- value mass in link 1 -->
+    <xacro:property name="mass2" value="0.211773012523455" /> <!-- value mass in link 2 -->
+    <xacro:property name="mass3" value="1.30147505439002" /> <!-- value mass in link 3 -->
+    <xacro:property name="mass4" value="0.129521630593046" /> <!-- value mass in link 4 -->
+    <xacro:property name="mass5" value="0.0631352356217759" /> <!-- value mass in link 5 -->
+    <xacro:property name="mass6" value="0.0631352356217759" /> <!-- value mass in link 6 -->
+    <xacro:property name="mass7" value="0.0106531788318515" /> <!-- value mass in gripper 1 -->
+    <xacro:property name="mass8" value="0.0223383129432979" /> <!-- value mass in gripper 2 -->
+    <xacro:property name="mass9" value="0.0103877852418143" /> <!-- value mass in gripper 3 -->
+    <xacro:property name="mass10" value="0.0103877852418143" /> <!-- value mass in gripper 4 -->
+    <xacro:property name="mass11" value="0.0223382858569993" /> <!-- value mass in gripper 5 -->
+    <xacro:property name="mass12" value="0.00355645530062258" /> <!-- value mass in gripper 6 -->
+    <xacro:property name="mass13" value="0.00355645530062257" /> <!-- value mass in gripper 6 -->
+    <xacro:property name="width" value="0.1" /> <!-- Square dimensions (widthxwidth) of beams -->
+    <xacro:property name="height1" value="2" /> <!-- Link 1 -->
+    <xacro:property name="height2" value="1" /> <!-- Link 2 -->
+    <xacro:property name="height3" value="1" /> <!-- Link 3 -->
+    <xacro:property name="camera_link" value="0.05" /> <!-- Size of square 'camera' box -->
+    <xacro:property name="axel_offset" value="0.05" /> <!-- Space btw top of beam and the each joint -->
+
+    <!-- Import all Gazebo-customization elements, including Gazebo colors -->
+    <xacro:include filename="$(find dof_fit_description)/urdf/dof_fit.gazebo" />
+    <!-- Import Rviz colors -->
+    <xacro:include filename="$(find dof_fit_description)/urdf/materials.xacro" />
+    
+    <!-- Used for fixing robot to Gazebo 'base_link' -->
+    <link name="world" />
+    <joint name="fixed" type="fixed">
+        <parent link="world"/>
+        <child link="base_link"/>
+    </joint>
+    <link name="base_link">
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+	            <mesh filename="package://dof_fit/meshes/base_link.STL" />
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+	            <mesh filename="package://dof_fit/meshes/base_link.STL" />
+            </geometry>
+            <material name="orange"/>
+        </visual>
+        <inertial>
+            <origin xyz="-5.0171E-05 0.00010703 0.043587" rpy="0 0 0" />
+            <mass value="${mass0}"/>
+            <inertia ixx="0.0011281" ixy="-4.5611E-07" ixz="-6.71E-07" iyy="0.0011096" iyz="-2.9908E-07" izz="0.0018749" />
+        </inertial>
+    </link> 
+    <link name="Link_1">
+    
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Link_1.STL" />
+            </geometry>
+        </collision>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Link_1.STL" />
+            </geometry>
+            <material name="black"/>
+        </visual>
+
+        <inertial>
+            <origin xyz="-0.0439423990536337 0.000602856371571715 0.000121144358782827" rpy="0 0 0" />
+            <mass value="${mass1}"/>
+            <inertia ixx="0.000555908221091426" ixy="-1.46554597692578E-06" ixz="8.46437587472299E-08" iyy="0.000778122191766057" iyz="-5.16254437826682E-06" izz="0.000623023265234466" />
+        </inertial>
+        
+    </link>
+    <joint name="Joint_1" type="revolute">
+        <parent link="base_link"/>
+        <child link="Link_1" />
+        <origin xyz="0 0 0.104" rpy="1.5708 1.5708 0"/>
+        <axis xyz="-1 0 0"/>
+        <limit lower="-1.5707" upper="1.5707" effort="20" velocity="0.08"/>
+        <dynamics damping="0.7"/>
+    </joint>
+    <link name="Link_2">
+    
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Link_2.STL" />
+            </geometry>
+        </collision>
+        
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Link_2.STL" />
+            </geometry>
+            <material name="organge"/>
+        </visual>
+        
+        <inertial>
+            <origin xyz="0.0685680762868854 0.000599984307954203 0.0258674459321705" rpy="0 0 0" />
+            <mass value="${mass2}"/>
+            <inertia ixx="5.08010498198532E-05" ixy="-3.30977561073865E-06" ixz="-6.23987755766645E-06" iyy="0.000226386199188006" iyz="-4.52073993406769E-07" izz="0.000237485881547953" />
+        </inertial>
+        
+    </link>
+    <joint name="Joint_2" type="revolute">
+        <parent link="Link_1" />
+        <child link="Link_2" />
+        <origin xyz="-0.046 0.028987 -0.00085654" rpy="-1.5708 0 3.1416" />
+        <axis xyz="0 0 1" />
+        <limit lower="-1.5707" upper="1.5707" effort="20" velocity="0.08" />
+        <dynamics damping="0.7"/>
+    </joint>
+    <link name="Link_3">
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Link_3.STL" />
+            </geometry>
+        </collision>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Link_3.STL" />
+            </geometry>
+            <material name="black"/>
+        </visual>
+        
+        <inertial>
+            <origin xyz="-0.0256503139904983 0.0264730871404752 -0.00364498798136229" rpy="0 0 0" />
+            <mass value="${mass3}"/>
+            <inertia ixx="0.00038258642934127" ixy="-1.42359640823949E-06" ixz="-4.52202117042666E-05" iyy="0.00040436684855594" iyz="6.83475965893099E-07" izz="0.000379491920992587" />
+        </inertial>
+
+    </link>
+    <joint name="Joint_3" type="revolute">
+        <parent link="Link_2" />
+        <child link="Link_3" />
+        <origin xyz="0.20497 0.0038029 0.0092964" rpy="-1.5917 0.020887 -2.3564" />
+        <axis xyz="0 1 0" />
+        <limit lower="0" upper="1.5" effort="20" velocity="0.08" />
+        <dynamics damping="0.7"/>
+    </joint>
+    <link name="Link_4">
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Link_4.STL" />
+            </geometry>
+        </collision>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Link_4.STL" />
+            </geometry>
+            <material name="orange"/>
+        </visual>
+        
+        <inertial>
+            <origin xyz="0.000313197531303759 -0.0570886170653447 -0.000296558806608768" rpy="0 0 0" />
+            <mass value="${mass4}"/>
+            <inertia ixx="4.02638425978193E-05" ixy="6.01302431003278E-08" ixz="1.42139051669161E-06" iyy="2.73932044730563E-05" iyz="-5.98737231599718E-08" izz="4.04501029424382E-05" />
+        </inertial>
+        
+    </link>
+    <joint name="Joint_4" type="revolute">
+        <parent link="Link_3" />
+        <child link="Link_4" />
+        <origin xyz="-0.024685 -0.02479 -0.046026" rpy="0.95696 0.5256 2.1896" />
+        <axis xyz="0 1 0" />
+        <limit lower="-1.5707" upper="1.5707" effort="20" velocity="0.08" />
+        <dynamics damping="0.7"/>
+    </joint>
+    <link name="Link_5">
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Link_5.STL" />
+            </geometry>
+        </collision>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Link_5.STL" />
+            </geometry>
+            <material name="black"/>
+        </visual>
+        
+        <inertial>
+            <origin xyz="-0.00237077624161524 0.0352772248958467 0.000934761543790939" rpy="0 0 0" />
+            <mass value="${mass5}"/>
+            <inertia ixx="1.64938615608914E-05" ixy="6.91909654955854E-08" ixz="3.47216212826657E-10" iyy="1.35821446818582E-05" iyz="-8.02328780877477E-08" izz="1.66352804228886E-05" />
+        </inertial>
+
+    </link>
+    <joint name="Joint_5" type="revolute">
+        <parent link="Link_4" />
+        <child link="Link_5" />
+        <origin xyz="0 -0.1385 0" rpy="-0.001344 -0.75239 3.1416" />
+        <axis xyz="-1 0 0" />
+        <limit lower="-1.5707" upper="1.5707" effort="20" velocity="0.08" />
+        <dynamics damping="0.7"/>
+    </joint>
+    <link name="Link_6">
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Link_6.STL" />
+            </geometry>
+        </collision>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Link_6.STL" />
+            </geometry>
+            <material name="orange"/>
+        </visual>
+        
+        <inertial>
+            <origin xyz="-0.00859625543246861 0.0405127544320565 0.00139619595223389" rpy="0 0 0" />
+            <mass value="${mass6}"/>
+            <inertia ixx="4.24057109975732E-05" ixy="1.38491765544162E-07" ixz="-7.10598502810795E-09" iyy="3.30267705750942E-05" iyz="-4.96861663871509E-08" izz="2.21813086048847E-05" />
+        </inertial>
+
+    </link>
+    <joint name="Joint_6" type="revolute">
+        <parent link="Link_5" />
+        <child link="Link_6" />
+        <origin xyz="-0.00245 0.0575 7.7278E-05" rpy="0 -0.001344 1.5708" />
+        <axis xyz="0 0 1" />
+        <limit lower="-3.1414" upper="0" effort="10" velocity="0.08" />
+        <dynamics damping="0.7"/>
+    </joint>
+    <link name="Gripper_Idol_Gear">
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Gripper_Idol_Gear.STL" />
+            </geometry>
+        </collision>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Gripper_Idol_Gear.STL" />
+            </geometry>
+            <material name="black"/>
+        </visual>
+        
+        <inertial>
+            <origin xyz="-0.00645264153794536 1.2888806133482E-09 0.000406652747912711" rpy="0 0 0" />
+            <mass value="${mass7}"/>
+            <inertia ixx="4.88532798255261E-07" ixy="8.46082945323822E-14" ixz="-4.16495427516113E-08" iyy="2.46502258006767E-06" iyz="7.20204319128E-14" izz="2.03881076796993E-06" />
+        </inertial>
+
+    </link>
+    <joint name="Gripper_Idol_Gear_Joint" type="revolute">
+        <parent link="Link_6" />
+        <child link="Gripper_Idol_Gear" />
+        <origin xyz="0 0.048 0.01645" rpy="1.5708 1.5708 0" />
+        <axis xyz="0 1 0" />
+        <limit lower="-1.5707" upper="0" effort="20" velocity="0.08" />
+        <dynamics damping="0.7"/>
+    </joint>
+    <link name="Tip_Gripper_Idol">
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Tip_Gripper_Idol.STL" />
+            </geometry>
+        </collision>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Tip_Gripper_Idol.STL" />
+            </geometry>
+            <material name="orange"/>
+        </visual>
+        
+        <inertial>
+            <origin xyz="0.0283088813853639 0.000252430460343372 0.0070058575409696" rpy="0 0 0" />
+            <mass value="${mass8}"/>
+            <inertia ixx="1.20060918495953E-06" ixy="9.40667187925121E-10" ixz="-1.3074260850099E-06" iyy="8.52850293234169E-06" iyz="2.04974269309147E-10" izz="8.68035962011853E-06" />
+        </inertial>
+
+    </link>
+    <joint name="Tip_Gripper_Idol_Joint" type="revolute">
+        <parent link="Gripper_Idol_Gear" />
+        <child link="Tip_Gripper_Idol" />
+        <origin xyz="-0.04 0 0" rpy="0 1.5708 0" />
+        <axis xyz="0 1 0" />
+        <limit lower="-1.5" upper="0" effort="20" velocity="0.08" />
+        <mimic joint="Gripper_Idol_Gear_Joint" multiplier="-1" offset="0" />
+        <dynamics damping="0.7"/>
+    </joint>
+    <link name="Gripper_Servo_Gear">
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Gripper_Servo_Gear.STL" />
+            </geometry>
+        </collision>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Gripper_Servo_Gear.STL" />
+            </geometry>
+            <material name="black"/>
+        </visual>
+        
+        <inertial>
+            <origin xyz="-0.00659446521753219 5.68561578928595E-08 -0.000395277758091589" rpy="0 0 0" />
+            <mass value="${mass9}"/>
+            <inertia ixx="4.85661536277939E-07" ixy="-5.6178873772505E-12" ixz="3.58267516543681E-08" iyy="2.44996035793358E-06" iyz="-4.05817638743612E-12" izz="2.02505835231068E-06" />
+        </inertial>
+
+    </link>
+    <joint name="Gripper_Servo_Gear_Joint" type="revolute">
+        <parent link="Link_6" />
+        <child link="Gripper_Servo_Gear" />
+        <origin xyz="0 0.048 -0.01155" rpy="0 -1.5654 -1.5708" />
+        <axis xyz="0 1 0" />
+        <limit lower="0" upper="1.5707" effort="20" velocity="0.08" />
+        <dynamics damping="0.7"/>
+    </joint>
+    <link name="Tip_Gripper_Servo">
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Tip_Gripper_Servo.STL" />
+            </geometry>
+        </collision>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Tip_Gripper_Servo.STL" />
+            </geometry>
+            <material name="orange"/>
+        </visual>
+        
+        <inertial>
+            <origin xyz="0.0283088936740149 -0.000252391223208054 0.00700586590604133" rpy="0 0 0" />
+            <mass value="${mass11}"/>
+            <inertia ixx="1.20060685488941E-06" ixy="-9.22618006784907E-10" ixz="-1.30742386656302E-06" iyy="8.52849811219307E-06" iyz="-1.62594005761941E-10" izz="8.68035533802863E-06" />
+        </inertial>
+        
+    </link>
+    <joint name="Tip_Gripper_Servo_Joint" type="revolute">
+        <parent link="Gripper_Servo_Gear" />
+        <child link="Tip_Gripper_Servo" />
+        <origin xyz="-0.04 0 0" rpy="0 -1.5654 -3.1416" />
+        <axis xyz="0 -1 0" />
+        <limit lower="0" upper="1.3" effort="20" velocity="0.08" />
+        <mimic joint="Gripper_Servo_Gear_Joint" multiplier="-1" offset="0" />
+        <dynamics damping="0.7"/>
+    </joint>
+    <link name="Pivot_Arm_gripper_Servo">
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Pivot_Arm_gripper_Servo.STL" />
+            </geometry>
+        </collision>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Pivot_Arm_gripper_Servo.STL" />
+            </geometry>
+            <material name="black"/>
+        </visual>
+        
+        <inertial>
+            <origin xyz="-0.0199999999999479 -1.02834407655905E-13 -1.21208598713451E-13" rpy="0 0 0" />
+            <mass value="${mass12}"/>
+            <inertia ixx="2.23718203237377E-08" ixy="1.6939537525642E-21" ixz="-1.60524737623572E-23" iyy="6.61682654190112E-07" iyz="6.26141959371149E-22" izz="6.59724388878559E-07" />
+        </inertial>
+
+    </link>
+    <joint name="Pivot_Arm_Gripper_Servo_Joint" type="revolute">
+        <parent link="Link_6" />
+        <child link="Pivot_Arm_gripper_Servo" />
+        <origin xyz="0 0.068 -0.00455" rpy="3.1416 -1.5654 -1.5708" />
+        <axis xyz="-1 0 0" />
+        <limit lower="-1.5707" upper="1.5707" effort="20" velocity="0.08" />
+        <mimic joint="Gripper_Servo_Gear_Joint" multiplier="1" offset="0" />
+        <dynamics damping="0.7"/>
+    </joint>
+    <link name="Pivot_Arm_Gripper_Idol">
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Pivot_Arm_Gripper_Idol.STL" />
+            </geometry>
+        </collision>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://dof_fit/meshes/Pivot_Arm_Gripper_Idol.STL" />
+            </geometry>
+            <material name="orange"/>
+        </visual>
+        
+        <inertial>
+            <origin xyz="0.0240001434028309 2.66453525910038E-15 -5.35540477596824E-05" rpy="0 0 0" />
+            <mass value="${mass13}"/>
+            <inertia ixx="2.23718203237376E-08" ixy="3.74867317472531E-24" ixz="8.16759648830381E-24" iyy="6.61682654190112E-07" iyz="5.50445026314332E-23" izz="6.59724388878558E-07" />
+        </inertial>
+
+    </link>
+    <joint name="Pivot_Arm_Gripper_Idol_Joint" type="revolute">
+        <parent link="Link_6" />
+        <child link="Pivot_Arm_Gripper_Idol" />
+        <origin xyz="0 0.067946 0.0054499" rpy="1.5708 -1.5708 0" />
+        <axis xyz="0 -1 0" />
+        <limit lower="0" upper="1.5707" effort="20" velocity="0.08" />
+        <mimic joint="Gripper_Idol_Gear_Joint" multiplier="1" offset="0" />
+        <dynamics damping="0.7"/>
+    </joint>
+
+    <!-- sensor laser -->
+    <joint name="hokuyo_joint" type="fixed">
+        <axis xyz="0 1 0" />
+        <origin xyz="0 0 ${height3 - axel_offset/2}" rpy="0 0 0"/>
+        <parent link="link3"/>
+        <child link="hokuyo_link"/>
+    </joint>
+
+    <!-- Hokuyo Laser -->
+    <link name="hokuyo_link">
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+	            <box size="0.1 0.1 0.1"/>
+            </geometry>
+        </collision>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://dof_fit_description/meshes/hokuyo.dae"/>
+            </geometry>
+        </visual>
+
+        <inertial>
+            <mass value="1e-5" />
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+        </inertial>
+    </link>
+
+    <joint name="camera_joint" type="fixed">
+        <axis xyz="0 1 0" />
+        <origin xyz="${camera_link} 0 ${height3 - axel_offset*2}" rpy="0 0 0"/>
+        <parent link="link3"/>
+        <child link="camera_link"/>
+    </joint>
+
+    <!-- Camera -->
+    <link name="camera_link">
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+	            <box size="${camera_link} ${camera_link} ${camera_link}"/>
+            </geometry>
+        </collision>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+	            <box size="${camera_link} ${camera_link} ${camera_link}"/>
+            </geometry>
+            <material name="red"/>
+        </visual>
+
+        <inertial>
+            <mass value="1e-5" />
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+        </inertial>
+    </link>
+
+    <!-- generate an optical frame http://www.ros.org/reps/rep-0103.html#suffix-frames
+        so that ros and opencv can operate on the camera frame correctly -->
+    <joint name="camera_optical_joint" type="fixed">
+        <!-- these values have to be these values otherwise the gazebo camera image
+            won't be aligned properly with the frame it is supposedly originating from -->
+        <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+        <parent link="camera_link"/>
+        <child link="camera_link_optical"/>
+    </joint>
+
+    <link name="camera_link_optical">
+    </link>
+    
+    <transmission name="trans1">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="Joint_1">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor1">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans2">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="Joint_2">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor2">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans3">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="Joint_3">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor3">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans4">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="Joint_4">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor4">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans5">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="Joint_5">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor5">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans6">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="Joint_6">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor6">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans7">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="Gripper_Idol_Gear_Joint">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor7">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans8">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="Tip_Gripper_Idol_Joint">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor8">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans9">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="Gripper_Servo_Gear_Joint">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor9">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans10">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="Tip_Gripper_Servo_Joint">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor10">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans11">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="Pivot_Arm_Gripper_Servo_Joint">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor11">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans12">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="Pivot_Arm_Gripper_Idol_Joint">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor12">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+</robot>
