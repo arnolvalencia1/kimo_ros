@@ -1,0 +1,6 @@
+<launch>
+
+  <!-- Load controller manager -->
+  <node name="get_date" pkg="ros_control_boilerplate/dof_fit_control/scripts" type="get_date.py"
+	output="screen"/>
+</launch>
