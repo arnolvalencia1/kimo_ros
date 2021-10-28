@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <include file="$(find dof_config)/launch/spawn_urdf.launch">
+        <arg name="x" value="0.0" />
+        <arg name="y" value="0.0" />
+        <arg name="z" value="0.0" />
+        <arg name="urdf_robot_file" value="$(find dof_fit)/urdf/dof_fit.urdf" />
+        <arg name="robot_name" value="dof_fit" />
+    </include>
+    <include file="$(find dof_config)/launch/planning_context.launch" >
+    <arg name="load_robot_description" value="true" />
+  </include>
+</launch>

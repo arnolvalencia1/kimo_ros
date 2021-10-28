@@ -1,0 +1,25 @@
+<launch>
+  <!-- Cargar configuraciones de controlador conjunto desde el archivo YAML al servidor de parámetros -->
+  <rosparam file="$(find dof_config)/config/kimo_control.yaml" command="load"/>
+
+  <!-- cargar los controladores -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/dof_fit" args="joint_state_controller
+                                        Joint_1_position_controller
+                                        Joint_2_position_controller
+                                        Joint_3_position_controller
+                                        Joint_4_position_controller
+                                        Joint_5_position_controller
+                                        Joint_6_position_controller
+                                        Gripper_Idol_Gear_Joint_position_controller
+                                        Gripper_Servo_Gear_Joint_position_controller"/>
+
+  <!-- convertir estados conjuntos a transformaciones TF para rviz, etc >
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+    <remap from="/joint_states" to="/dof_fit/joint_states" />
+    <param name="publish_frequency" type="double" value="100.0" />
+    <param name="tf_prefix" type="string" value="" />
+  </node-->
+
+</launch>

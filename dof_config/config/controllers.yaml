@@ -1,0 +1,11 @@
+arm_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+      - Joint_1
+      - Joint_2
+      - Joint_3
+      - Joint_4
+      - Joint_5
+      - Joint_6
+      - Gripper_Idol_Gear_Joint
+      - Gripper_Servo_Gear_Joint

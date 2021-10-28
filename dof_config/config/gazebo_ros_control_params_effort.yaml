@@ -1,0 +1,11 @@
+ /dof_fit/arm_controller/gains/:
+    Joint_1: {p: 1000.0, i: 0.0, d: 0.0}
+    Joint_2: {p: 1000.0, i: 0.0, d: 0.0}
+    Joint_3: {p: 1000.0, i: 0.0, d: 0.0}
+    Joint_4: {p: 1000.0, i: 0.0, d: 0.0}
+    Joint_5: {p: 1000.0, i: 0.0, d: 0.0}
+    Joint_6: {p: 1000.0, i: 0.0, d: 0.0}    
+
+ /dof_fit/hand_controller/gains/:
+    Gripper_Idol_Gear_Joint:       {p: 1000.0, i: 0.0, d: 0.0}
+    Gripper_Servo_Gear_Joint:      {p: 1000.0, i: 0.0, d: 0.0}

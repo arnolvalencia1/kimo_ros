@@ -1,0 +1,10 @@
+<launch>
+
+  <node pkg="rostopic" type="rostopic" name="Joint_1" args="pub /dof_fit/Joint_1_position_controller/command std_msgs/Float64 0" output="screen"/>
+  <node pkg="rostopic" type="rostopic" name="Joint_2" args="pub /dof_fit/Joint_2_position_controller/command std_msgs/Float64 0" output="screen"/>
+  <node pkg="rostopic" type="rostopic" name="Joint_3" args="pub /dof_fit/Joint_3_position_controller/command std_msgs/Float64 0" output="screen"/>
+  <node pkg="rostopic" type="rostopic" name="Joint_4" args="pub /dof_fit/Joint_4_position_controller/command std_msgs/Float64 0" output="screen"/>
+  <node pkg="rostopic" type="rostopic" name="Joint_5" args="pub /dof_fit/Joint_5_position_controller/command std_msgs/Float64 0" output="screen"/>
+  <node pkg="rostopic" type="rostopic" name="Joint_6" args="pub /dof_fit/Joint_6_position_controller/command std_msgs/Float64 0" output="screen"/>
+
+</launch>

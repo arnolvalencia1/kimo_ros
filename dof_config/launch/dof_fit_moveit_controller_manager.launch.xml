@@ -1,0 +1,8 @@
+<launch>
+  <!-- Establezca el parámetro que necesita trayectoria_execution_manager para encontrar el complemento del controlador -->
+  <arg name="moveit_controller_manager" default="moveit_simple_controller_manager/MoveItSimpleControllerManager" />
+  <param name="moveit_controller_manager" value="$(arg moveit_controller_manager)"/>
+  <!-- load controller_list -->
+  <!-- rosparam file="$(find dof_config)/config/rrbot_controllers.yaml"/ -->
+  <rosparam file="$(find dof_config)/config/ros_controllers.yaml" command="load"/>
+</launch>
